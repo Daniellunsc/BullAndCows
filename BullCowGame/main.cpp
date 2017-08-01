@@ -6,17 +6,15 @@
 using namespace std;
 
 void PrintIntro();
-string GetGuessAndPrintBack();
+void PlayGame();
+string GetGuess();
 
 int main() {
 	
 	PrintIntro();
 
-	for (int i = 0; i < 5; i++)
-	{
-		GetGuessAndPrintBack();
-	}
-	return 0;
+	PlayGame();
+	return 0; // exit application
 }
 
 
@@ -35,13 +33,27 @@ void PrintIntro() {
 
 }
 
-string GetGuessAndPrintBack() {
+
+void PlayGame() {
+	// lopp for the number of turns asking guesses
+	constexpr int NUMBER_OF_TURNS = 5;
+	for (int i = 1; i <= NUMBER_OF_TURNS; i++)
+	{
+		string Guess = GetGuess();
+		cout << "Your guess was: " << Guess << endl;
+		cout << endl;
+	}
+
+}
+
+
+string GetGuess() {
+
 	// get guess from the player
 	string Guess = "";
 	cout << "Enter your guess: ";
 
 	getline(cin, Guess);
-	cout << "Your guess was: " << Guess << endl;
 
 	return Guess;
 
