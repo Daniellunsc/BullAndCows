@@ -8,12 +8,13 @@ using namespace std;
 void PrintIntro();
 void PlayGame();
 string GetGuess();
+bool AskToPlayAgain();
 
 int main() {
 	
 	PrintIntro();
-
 	PlayGame();
+	AskToPlayAgain();
 	return 0; // exit application
 }
 
@@ -58,3 +59,13 @@ string GetGuess() {
 	return Guess;
 
 }
+
+bool AskToPlayAgain() {
+
+	cout << "Do you want to play again? ";
+	string Response = "";
+	getline(cin, Response);
+
+	return (Response[0] == 'y') || (Response[0] == 'Y');
+}
+
