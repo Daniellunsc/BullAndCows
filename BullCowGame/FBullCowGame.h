@@ -4,10 +4,12 @@
 class FBullCowGame{
 
 public:
+	
+	int GetMaxTries() const;
+	int GetCurrentTry() const;
+	bool IsGameWon() const;
+
 	void Reset(); // Make more rich return value
-	int GetMaxTries();
-	int GetCurrentTry();
-	bool IsGameWon();
 	bool CheckGuessValidity(std::string);  // Make more rich return value
 
 
