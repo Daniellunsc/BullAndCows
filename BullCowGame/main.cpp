@@ -20,6 +20,7 @@ using FText = std::string;
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
+void PrintGameSummary();
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; //instantiate a new game
@@ -61,7 +62,7 @@ void PlayGame() {
 
 	// is NOT won and there are still tries remaining
 
-	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) //TODO change from FOR to WHILE loop
+	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) 
 	{
 		FText Guess = GetValidGuess(); //TODO make loop checking valid
 
@@ -75,7 +76,9 @@ void PlayGame() {
 
 		std::cout << "Your guess was: " << Guess << "\n\n";
 	}
-	// TODO summarise game
+
+	PrintGameSummary();
+	return;
 }
 
 // loop continually until the user gives a valid guess
@@ -114,10 +117,19 @@ FText GetValidGuess() {
 	return Guess;
 }
 
+void PrintGameSummary() {
+	if (BCGame.IsGameWon()) {
+		std::cout << " You Won! Congrats!\n";
+	}
+	else {
+		std::cout << " Damn! You lose!\n";
+	}
+}
+
 
 bool AskToPlayAgain() {
 
-	std::cout << "Do you want to play again (y/n) ? ";
+	std::cout << "Do you want to play again with the same hidden word(y/n) ? ";
 	FText Response = "";
 	std::getline(std::cin, Response);
 

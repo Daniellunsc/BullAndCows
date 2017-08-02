@@ -30,9 +30,9 @@ public:
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
 
-	bool IsGameWon() const; //TODO make game logic to win
-	void Reset(); // TODO Make more rich return value
-	EGuessStatus CheckGuessValidity(FString) const;  // TODO Make more rich return value
+	bool IsGameWon() const;
+	void Reset(); 
+	EGuessStatus CheckGuessValidity(FString) const;  
 	FBullCowCount SubmitValidGuess(FString);
 
 
