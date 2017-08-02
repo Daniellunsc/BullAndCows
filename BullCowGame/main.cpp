@@ -1,12 +1,25 @@
 
+/*
+This is the console executable, that makes use of the BullCow class
+this acts as the view in a MVC pattern, and is responsible for all user interaction. 
+
+For game logic see the FBullCowGame class;
+
+
+*/
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+using int32 = int;
+
+using FText = std::string;
+
 
 void PrintIntro();
 void PlayGame();
-std::string GetGuess();
+FText GetGuess();
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; //instantiate a new game
@@ -16,6 +29,7 @@ int main() {
 	do {
 		PrintIntro();
 		PlayGame();
+		
 	} while (AskToPlayAgain());
 
 	return 0; // exit application
@@ -26,11 +40,11 @@ int main() {
 void PrintIntro() {
 
 	//introduce game
-	constexpr int WORLD_LENGTH = 5;
+	constexpr int32 WORD_LENGTH = 5;
 
 	std::cout << "Welcome to Bulls and Cows, a fun word game. " << std::endl;
 
-	std::cout << "Can you guess the " << WORLD_LENGTH;
+	std::cout << "Can you guess the " << WORD_LENGTH;
 	std::cout << " letter isogram I'm thinking of ?" << std::endl;
 	std::cout << std::endl;
 	return;
@@ -41,27 +55,32 @@ void PrintIntro() {
 void PlayGame() {
 
 	BCGame.Reset();
-	int MaxTries = BCGame.GetMaxTries();
+	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << MaxTries << std::endl;
-	// lopp for the number of turns asking guesses
 
-	for (int i = 1; i <= MaxTries; i++)
+	// lopp for the number of turns asking guesses
+	//TODO change from FOR to WHILE loop once we are validating tries
+	for (int32 i = 1; i <= MaxTries; i++)
 	{
-		std::string Guess = GetGuess();
+		FText Guess = GetGuess(); //TODO make loop checking valid
+
+		//Submit valid guess to the game
+		//Print number of bulls and cows
+
 		std::cout << "Your guess was: " << Guess << std::endl;
 		std::cout << std::endl;
 	}
-
+	// TODO summarise game
 }
 
 
-std::string GetGuess() {
+FText GetGuess() {
 
-	int CurrentTry = BCGame.GetCurrentTry();
+	int32 CurrentTry = BCGame.GetCurrentTry();
 
 	
 	// get guess from the player
-	std::string Guess = "";
+	FText Guess = "";
 	std::cout << "Try "<< CurrentTry << ". Enter your guess: ";
 	std::getline(std::cin, Guess);
 
@@ -72,7 +91,7 @@ std::string GetGuess() {
 bool AskToPlayAgain() {
 
 	std::cout << "Do you want to play again (y/n) ? ";
-	std::string Response = "";
+	FText Response = "";
 	std::getline(std::cin, Response);
 
 	return (Response[0] == 'y') || (Response[0] == 'Y');
