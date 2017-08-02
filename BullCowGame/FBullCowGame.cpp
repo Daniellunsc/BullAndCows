@@ -7,17 +7,11 @@ FBullCowGame::FBullCowGame() {
 	Reset();
 }
 
-int32 FBullCowGame::GetMaxTries() const {
-	return MyMaxTries;
-}
-
-int32 FBullCowGame::GetCurrentTry() const {
-	return MyCurrentTry;
-}
+int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
+int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length();}
 
 bool FBullCowGame::IsGameWon() const {
-
-	
 	return false;
 }
 
@@ -25,16 +19,15 @@ bool FBullCowGame::IsGameWon() const {
 void FBullCowGame::Reset() {
 
 	 constexpr int32 MAX_TRIES = 8;
-	 const FString HIDDEN_WORD = "ant";
+	 const FString HIDDEN_WORD = "planet";
 
 	 MyHiddenWord = HIDDEN_WORD;
-
 	 MyMaxTries = MAX_TRIES;
 	 MyCurrentTry = 1;
 	 return;
 }
 
-bool FBullCowGame::CheckGuessValidity(FString m_guess) {
+bool FBullCowGame::CheckGuessValidity(FString m_guess) const {
 	return false;
 }
 

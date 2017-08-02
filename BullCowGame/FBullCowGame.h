@@ -19,10 +19,11 @@ public:
 	
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
-	bool IsGameWon() const; //TODO make game logic to win
+	int32 GetHiddenWordLength() const;
 
+	bool IsGameWon() const; //TODO make game logic to win
 	void Reset(); // TODO Make more rich return value
-	bool CheckGuessValidity(FString);  // TODO Make more rich return value
+	bool CheckGuessValidity(FString) const;  // TODO Make more rich return value
 	FBullCowCount SubmitGuess(FString);
 
 
