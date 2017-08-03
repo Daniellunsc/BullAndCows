@@ -38,9 +38,14 @@ public:
 
 
 private:
+
+	bool IsIsogram(FString) const;
+	bool IsLowerCase(FString) const;
+
 	int32 MyCurrentTry;
 	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
+	
 
 };

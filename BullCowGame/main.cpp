@@ -23,7 +23,7 @@ FText GetValidGuess();
 void PrintGameSummary();
 bool AskToPlayAgain();
 
-FBullCowGame BCGame; //instantiate a new game
+FBullCowGame BCGame; 
 
 int main() {
 
@@ -40,7 +40,6 @@ int main() {
 
 void PrintIntro() {
 
-	//introduce game
 
 	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game. " << std::endl;
 
@@ -58,23 +57,16 @@ void PlayGame() {
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << MaxTries << std::endl;
 
-	// lopp for the number of turns asking guesses while the game is not won
-
-	// is NOT won and there are still tries remaining
 
 	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) 
 	{
-		FText Guess = GetValidGuess(); //TODO make loop checking valid
-
+		FText Guess = GetValidGuess(); 
 
 		//Submit valid guess to the game, and receive counts
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
-		
-
-		std::cout << "Your guess was: " << Guess << "\n\n";
 	}
 
 	PrintGameSummary();
@@ -90,7 +82,8 @@ FText GetValidGuess() {
 	int32 CurrentTry = BCGame.GetCurrentTry();
 	// get guess from the player
 	
-	std::cout << "Try "<< CurrentTry << ". Enter your guess: ";
+	std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries();
+	std::cout << ". Enter your guess: ";
 	std::getline(std::cin, Guess);
 
 	Status = BCGame.CheckGuessValidity(Guess);
@@ -102,27 +95,26 @@ FText GetValidGuess() {
 			break;
 
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Please enter a isogram word";
+			std::cout << "Please enter a isogram word\n\n";
 			break;
 
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter your word all in lowercase";
+			std::cout << "Please enter your word all in lowercase\n\n";
 			break;
 
 		default:
 			break;
 		}
-	std::cout << std::endl;
 	} while (Status != EGuessStatus::OK); // keep looping until we get no errors
 	return Guess;
 }
 
 void PrintGameSummary() {
 	if (BCGame.IsGameWon()) {
-		std::cout << " You Won! Congrats!\n";
+		std::cout << "You Won! Congrats!\n";
 	}
 	else {
-		std::cout << " Damn! You lose!\n";
+		std::cout << "Damn! You lose!\n";
 	}
 }
 
